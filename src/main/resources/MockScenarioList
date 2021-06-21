@@ -1,0 +1,34 @@
+ {"mockScenarioList" :
+   [
+     {
+       "name" : "Mock Scenario 0 - Trial Scenario",
+       "id" : "0",
+       "description" : " The data here is just for trial."
+     },
+     {
+       "name" : "Mock Scenario 1 - Hello-world",
+       "id" : "1",
+       "description" : " This scenario comprises of :- Root Compartment containing 1 Subnet, 1 Compute Instance, 1 Network NIC & Attachement and 1 Block Volume."
+     },
+     {
+       "name" : "Mock Scenario 2 - Multi-Compartment",
+       "id" : "2",
+       "description" : " This scenario comprises of :- Empty Root Compartment ,Development compartment containing 1 VCN, 1 Subnet, 1 Compute Instance, 1 Network NIC & Attachement and 1 Block Volume,Production compartment containing 1 VCN, 2 Subnets, 2 Compute Instances, 2 Network NICs & Attachements and 2 Block Volumes."
+     },
+     {
+       "name" : "Mock Scenario 3 -  Small-Tenancy",
+       "id" : "3",
+       "description" : " This scenario comprises of :- Empty Root Compartment ,Development compartment containing 1 VCN, 2 Subnets, 10 Compute Instance, 10 Network NICs & Attachements and 5 Block Volumes., Production compartment containing 1 VCN, 2 Subnets, 2 Compute Instances, 2 Network NICs & Attachements and 2 Block Volumes."
+     },
+     {
+       "name" : "Mock Scenario 4 -  Medium-Tenancy",
+       "id" : "4",
+       "description" : " Empty Root Compartment, Development compartment containing 2 VCNs, 2 Subnets, 10 Compute Instance, 10 Network NICs & Attachements and 5 Block Volumes., Test compartment containing 3 VCNs, 3 Subnets, 30 Compute Instance, 30 Network NICs & Attachements, 10 Block Volumes for 20 instances with remainder sharing the 5 volumes from Development compartment., Production compartment containing 1 VCN, 2 Subnet, 2 Compute Instance, 2 Network NIC & Attachement and 2 Block Volumes."
+     },
+     {
+       "name" : "Mock Scenario 5 - Trial Scenario",
+       "id" : "5",
+       "description" : " The data here is just for trial."
+     }
+   ]
+ }

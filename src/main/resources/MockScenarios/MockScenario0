@@ -1,0 +1,85 @@
+{
+    "nodes": [
+        {
+          "id":"ocid.comp.root",
+          "name":"root",
+          "resources":
+          [
+            {
+              "resourceType": "policy",
+              "items":
+              [
+                "ocid.policy.111111...",
+                "ocid.policy.222222..."
+              ]
+            }
+          ],
+          "children":
+          [
+            {
+              "id":"ocid.comp.1111111",
+              "name":"compute",
+              "resources":
+              [
+                {
+                  "resourceType": "instance",
+                  "items":
+                  [
+                    "ocid.instance.1111111",
+                    "ocid.instance.222222",
+                    "ocid.instance.333333"
+                  ]
+                }
+              ],
+              "children":
+              [
+                {
+                  "id":"ocid.comp.3",
+                  "name":"network",
+                  "resources":
+                  [
+                    {
+                      "resourceType": "subnet",
+                      "items":
+                      [
+                        "ocid.subnet.11111"
+                      ]
+                    },
+                    {
+                      "resourceType": "vcn",
+                      "items":
+                      [
+                        "ocid.vcn.11111"
+                      ]
+                    }
+                  ],
+                  "children":[]
+                }
+              ]
+            },
+            {
+              "id":"ocid.comp.3",
+              "name":"network",
+              "resources":
+              [
+                {
+                  "resourceType": "subnet",
+                  "items":
+                  [
+                    "ocid.subnet.222222"
+                  ]
+                },
+                {
+                  "resourceType": "vcn",
+                  "items":
+                  [
+                    "ocid.vcn.222222"
+                  ]
+                }
+              ],
+              "children":[]
+            }
+          ]
+        }
+    ]
+}

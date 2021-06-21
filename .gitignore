@@ -1,0 +1,4 @@
+# Ignore Target Directory
+target/
+# Ignore IDE Configurations
+.idea/

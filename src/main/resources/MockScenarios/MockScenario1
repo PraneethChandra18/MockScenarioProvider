@@ -1,0 +1,42 @@
+{
+  "nodes": [
+    {
+      "id":"ocid.compartment.0",
+      "name":"root",
+      "resources": [
+        {
+          "resourceType":"VCN",
+          "items": [
+            "ocid.VCN.1"
+          ]
+        },
+        {
+          "resourceType":"subnet",
+          "items": [
+            "ocid.subnet.2"
+          ]
+        },
+        {
+          "resourceType":"instance",
+          "items": [
+            "ocid.instance.3"
+          ]
+        },
+        {
+          "resourceType":"NIC",
+          "items": [
+            "ocid.NIC.4"
+          ]
+        },
+        {
+          "resourceType":"blockVolume",
+          "items": [
+            "ocid.blockVolume.5"
+          ]
+        }
+      ],
+      "children": [
+      ]
+    }
+  ]
+}

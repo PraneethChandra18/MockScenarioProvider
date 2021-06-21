@@ -1,0 +1,115 @@
+{
+  "nodes": [
+    {
+      "id":"ocid.compartment.0",
+      "name":"root",
+      "resources": [
+      ],
+      "children": [
+        {
+          "id":"ocid.compartment.1",
+          "name":"Development",
+          "resources": [
+            {
+              "resourceType":"VCN",
+              "items": [
+                "ocid.VCN.2"
+              ]
+            },
+            {
+              "resourceType":"subnet",
+              "items": [
+                "ocid.subnet.3",
+                "ocid.subnet.4"
+              ]
+            },
+            {
+              "resourceType":"instance",
+              "items": [
+                "ocid.instance.5",
+                "ocid.instance.6",
+                "ocid.instance.7",
+                "ocid.instance.8",
+                "ocid.instance.9",
+                "ocid.instance.10",
+                "ocid.instance.11",
+                "ocid.instance.12",
+                "ocid.instance.13",
+                "ocid.instance.14"
+              ]
+            },
+            {
+              "resourceType":"NIC",
+              "items": [
+                "ocid.NIC.15",
+                "ocid.NIC.16",
+                "ocid.NIC.17",
+                "ocid.NIC.18",
+                "ocid.NIC.19",
+                "ocid.NIC.20",
+                "ocid.NIC.21",
+                "ocid.NIC.22",
+                "ocid.NIC.23",
+                "ocid.NIC.24"
+              ]
+            },
+            {
+              "resourceType":"blockVolume",
+              "items": [
+                "ocid.blockVolume.25",
+                "ocid.blockVolume.26",
+                "ocid.blockVolume.27",
+                "ocid.blockVolume.28",
+                "ocid.blockVolume.29"
+              ]
+            }
+          ],
+          "children": [
+          ]
+        },
+        {
+          "id":"ocid.compartment.30",
+          "name":"Production",
+          "resources": [
+            {
+              "resourceType":"VCN",
+              "items": [
+                "ocid.VCN.31"
+              ]
+            },
+            {
+              "resourceType":"subnet",
+              "items": [
+                "ocid.subnet.32",
+                "ocid.subnet.33"
+              ]
+            },
+            {
+              "resourceType":"instance",
+              "items": [
+                "ocid.instance.34",
+                "ocid.instance.35"
+              ]
+            },
+            {
+              "resourceType":"NIC",
+              "items": [
+                "ocid.NIC.36",
+                "ocid.NIC.37"
+              ]
+            },
+            {
+              "resourceType":"blockVolume",
+              "items": [
+                "ocid.blockVolume.38",
+                "ocid.blockVolume.39"
+              ]
+            }
+          ],
+          "children": [
+          ]
+        }
+      ]
+    }
+  ]
+}
