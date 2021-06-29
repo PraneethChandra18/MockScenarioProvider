@@ -1,4 +1,5 @@
 {
+  "name": "Medium-Tenancy",
   "nodes": [
     {
       "id":"ocid.compartment.0",
@@ -221,5 +222,601 @@
         }
       ]
     }
-  ]
+  ],
+  "edges": [
+    {
+      "source":"ocid.VCN.109",
+      "target": [
+        "ocid.subnet.110",
+        "ocid.subnet.111"
+      ]
+    },
+    {
+      "source":"ocid.subnet.110",
+      "target": [
+        "ocid.instance.112"
+      ]
+    },
+    {
+      "source":"ocid.subnet.111",
+      "target": [
+        "ocid.instance.113"
+      ]
+    },
+    {
+      "source":"ocid.instance.112",
+      "target": [
+        "ocid.NIC.114"
+      ]
+    },
+    {
+      "source":"ocid.instance.113",
+      "target": [
+        "ocid.NIC.115"
+      ]
+    },
+    {
+      "source":"ocid.NIC.114",
+      "target": [
+        "ocid.blockVolume.116"
+      ]
+    },
+    {
+      "source":"ocid.NIC.115",
+      "target": [
+        "ocid.blockVolume.117"
+      ]
+    },
+    {
+      "source":"ocid.VCN.2",
+      "target": [
+        "ocid.subnet.4"
+      ]
+    },
+    {
+      "source":"ocid.VCN.3",
+      "target": [
+        "ocid.subnet.5"
+      ]
+    },
+    {
+      "source":"ocid.subnet.4",
+      "target": [
+        "ocid.instance.6",
+        "ocid.instance.7",
+        "ocid.instance.8",
+        "ocid.instance.9",
+        "ocid.instance.10"
+      ]
+    },
+    {
+      "source":"ocid.subnet.5",
+      "target": [
+        "ocid.instance.11",
+        "ocid.instance.12",
+        "ocid.instance.13",
+        "ocid.instance.14",
+        "ocid.instance.15"
+      ]
+    },
+    {
+      "source":"ocid.instance.6",
+      "target": [
+        "ocid.NIC.16"
+      ]
+    },
+    {
+      "source":"ocid.instance.7",
+      "target": [
+        "ocid.NIC.17"
+      ]
+    },
+    {
+      "source":"ocid.instance.8",
+      "target": [
+        "ocid.NIC.18"
+      ]
+    },
+    {
+      "source":"ocid.instance.9",
+      "target": [
+        "ocid.NIC.19"
+      ]
+    },
+    {
+      "source":"ocid.instance.10",
+      "target": [
+        "ocid.NIC.20"
+      ]
+    },
+    {
+      "source":"ocid.instance.11",
+      "target": [
+        "ocid.NIC.21"
+      ]
+    },
+    {
+      "source":"ocid.instance.12",
+      "target": [
+        "ocid.NIC.22"
+      ]
+    },
+    {
+      "source":"ocid.instance.13",
+      "target": [
+        "ocid.NIC.23"
+      ]
+    },
+    {
+      "source":"ocid.instance.14",
+      "target": [
+        "ocid.NIC.24"
+      ]
+    },
+    {
+      "source":"ocid.instance.15",
+      "target": [
+        "ocid.NIC.25"
+      ]
+    },
+    {
+      "source":"ocid.NIC.16",
+      "target": [
+        "ocid.blockVolume.26"
+      ]
+    },
+    {
+      "source":"ocid.NIC.17",
+      "target": [
+        "ocid.blockVolume.27"
+      ]
+    },
+    {
+      "source":"ocid.NIC.18",
+      "target": [
+        "ocid.blockVolume.28"
+      ]
+    },
+    {
+      "source":"ocid.NIC.19",
+      "target": [
+        "ocid.blockVolume.29"
+      ]
+    },
+    {
+      "source":"ocid.NIC.20",
+      "target": [
+        "ocid.blockVolume.30"
+      ]
+    },
+    {
+      "source":"ocid.NIC.21",
+      "target": [
+      ]
+    },
+    {
+      "source":"ocid.NIC.22",
+      "target": [
+      ]
+    },
+    {
+      "source":"ocid.NIC.23",
+      "target": [
+      ]
+    },
+    {
+      "source":"ocid.NIC.24",
+      "target": [
+      ]
+    },
+    {
+      "source":"ocid.NIC.25",
+      "target": [
+      ]
+    },
+    {
+      "source":"ocid.VCN.32",
+      "target": [
+        "ocid.subnet.35"
+      ]
+    },
+    {
+      "source":"ocid.VCN.33",
+      "target": [
+        "ocid.subnet.36"
+      ]
+    },
+    {
+      "source":"ocid.VCN.34",
+      "target": [
+        "ocid.subnet.37"
+      ]
+    },
+    {
+      "source":"ocid.subnet.35",
+      "target": [
+        "ocid.instance.38",
+        "ocid.instance.39",
+        "ocid.instance.40",
+        "ocid.instance.41",
+        "ocid.instance.42",
+        "ocid.instance.43",
+        "ocid.instance.44",
+        "ocid.instance.45",
+        "ocid.instance.46",
+        "ocid.instance.47"
+      ]
+    },
+    {
+      "source":"ocid.subnet.36",
+      "target": [
+        "ocid.instance.48",
+        "ocid.instance.49",
+        "ocid.instance.50",
+        "ocid.instance.51",
+        "ocid.instance.52",
+        "ocid.instance.53",
+        "ocid.instance.54",
+        "ocid.instance.55",
+        "ocid.instance.56",
+        "ocid.instance.57"
+      ]
+    },
+    {
+      "source":"ocid.subnet.37",
+      "target": [
+        "ocid.instance.58",
+        "ocid.instance.59",
+        "ocid.instance.60",
+        "ocid.instance.61",
+        "ocid.instance.62",
+        "ocid.instance.63",
+        "ocid.instance.64",
+        "ocid.instance.65",
+        "ocid.instance.66",
+        "ocid.instance.67"
+      ]
+    },
+    {
+      "source":"ocid.instance.38",
+      "target": [
+        "ocid.NIC.68"
+      ]
+    },
+    {
+      "source":"ocid.instance.39",
+      "target": [
+        "ocid.NIC.69"
+      ]
+    },
+    {
+      "source":"ocid.instance.40",
+      "target": [
+        "ocid.NIC.70"
+      ]
+    },
+    {
+      "source":"ocid.instance.41",
+      "target": [
+        "ocid.NIC.71"
+      ]
+    },
+    {
+      "source":"ocid.instance.42",
+      "target": [
+        "ocid.NIC.72"
+      ]
+    },
+    {
+      "source":"ocid.instance.43",
+      "target": [
+        "ocid.NIC.73"
+      ]
+    },
+    {
+      "source":"ocid.instance.44",
+      "target": [
+        "ocid.NIC.74"
+      ]
+    },
+    {
+      "source":"ocid.instance.45",
+      "target": [
+        "ocid.NIC.75"
+      ]
+    },
+    {
+      "source":"ocid.instance.46",
+      "target": [
+        "ocid.NIC.76"
+      ]
+    },
+    {
+      "source":"ocid.instance.47",
+      "target": [
+        "ocid.NIC.77"
+      ]
+    },
+    {
+      "source":"ocid.instance.48",
+      "target": [
+        "ocid.NIC.78"
+      ]
+    },
+    {
+      "source":"ocid.instance.49",
+      "target": [
+        "ocid.NIC.79"
+      ]
+    },
+    {
+      "source":"ocid.instance.50",
+      "target": [
+        "ocid.NIC.80"
+      ]
+    },
+    {
+      "source":"ocid.instance.51",
+      "target": [
+        "ocid.NIC.81"
+      ]
+    },
+    {
+      "source":"ocid.instance.52",
+      "target": [
+        "ocid.NIC.82"
+      ]
+    },
+    {
+      "source":"ocid.instance.53",
+      "target": [
+        "ocid.NIC.83"
+      ]
+    },
+    {
+      "source":"ocid.instance.54",
+      "target": [
+        "ocid.NIC.84"
+      ]
+    },
+    {
+      "source":"ocid.instance.55",
+      "target": [
+        "ocid.NIC.85"
+      ]
+    },
+    {
+      "source":"ocid.instance.56",
+      "target": [
+        "ocid.NIC.86"
+      ]
+    },
+    {
+      "source":"ocid.instance.57",
+      "target": [
+        "ocid.NIC.87"
+      ]
+    },
+    {
+      "source":"ocid.instance.58",
+      "target": [
+        "ocid.NIC.88"
+      ]
+    },
+    {
+      "source":"ocid.instance.59",
+      "target": [
+        "ocid.NIC.89"
+      ]
+    },
+    {
+      "source":"ocid.instance.60",
+      "target": [
+        "ocid.NIC.90"
+      ]
+    },
+    {
+      "source":"ocid.instance.61",
+      "target": [
+        "ocid.NIC.91"
+      ]
+    },
+    {
+      "source":"ocid.instance.62",
+      "target": [
+        "ocid.NIC.92"
+      ]
+    },
+    {
+      "source":"ocid.instance.63",
+      "target": [
+        "ocid.NIC.93"
+      ]
+    },
+    {
+      "source":"ocid.instance.64",
+      "target": [
+        "ocid.NIC.94"
+      ]
+    },
+    {
+      "source":"ocid.instance.65",
+      "target": [
+        "ocid.NIC.95"
+      ]
+    },
+    {
+      "source":"ocid.instance.66",
+      "target": [
+        "ocid.NIC.96"
+      ]
+    },
+    {
+      "source":"ocid.instance.67",
+      "target": [
+        "ocid.NIC.97"
+      ]
+    },
+    {
+      "source":"ocid.NIC.68",
+      "target": [
+        "ocid.blockVolume.98"
+      ]
+    },
+    {
+      "source":"ocid.NIC.69",
+      "target": [
+        "ocid.blockVolume.99"
+      ]
+    },
+    {
+      "source":"ocid.NIC.70",
+      "target": [
+        "ocid.blockVolume.100"
+      ]
+    },
+    {
+      "source":"ocid.NIC.71",
+      "target": [
+        "ocid.blockVolume.101"
+      ]
+    },
+    {
+      "source":"ocid.NIC.72",
+      "target": [
+        "ocid.blockVolume.102"
+      ]
+    },
+    {
+      "source":"ocid.NIC.73",
+      "target": [
+        "ocid.blockVolume.103"
+      ]
+    },
+    {
+      "source":"ocid.NIC.74",
+      "target": [
+        "ocid.blockVolume.104"
+      ]
+    },
+    {
+      "source":"ocid.NIC.75",
+      "target": [
+        "ocid.blockVolume.105"
+      ]
+    },
+    {
+      "source":"ocid.NIC.76",
+      "target": [
+        "ocid.blockVolume.106"
+      ]
+    },
+    {
+      "source":"ocid.NIC.77",
+      "target": [
+        "ocid.blockVolume.107"
+      ]
+    },
+    {
+      "source":"ocid.NIC.78",
+      "target": [
+      ]
+    },
+    {
+      "source":"ocid.NIC.79",
+      "target": [
+      ]
+    },
+    {
+      "source":"ocid.NIC.80",
+      "target": [
+      ]
+    },
+    {
+      "source":"ocid.NIC.81",
+      "target": [
+      ]
+    },
+    {
+      "source":"ocid.NIC.82",
+      "target": [
+      ]
+    },
+    {
+      "source":"ocid.NIC.83",
+      "target": [
+      ]
+    },
+    {
+      "source":"ocid.NIC.84",
+      "target": [
+      ]
+    },
+    {
+      "source":"ocid.NIC.85",
+      "target": [
+      ]
+    },
+    {
+      "source":"ocid.NIC.86",
+      "target": [
+      ]
+    },
+    {
+      "source":"ocid.NIC.87",
+      "target": [
+      ]
+    },
+    {
+      "source":"ocid.NIC.88",
+      "target": [
+      ]
+    },
+    {
+      "source":"ocid.NIC.89",
+      "target": [
+      ]
+    },
+    {
+      "source":"ocid.NIC.90",
+      "target": [
+      ]
+    },
+    {
+      "source":"ocid.NIC.91",
+      "target": [
+      ]
+    },
+    {
+      "source":"ocid.NIC.92",
+      "target": [
+      ]
+    },
+    {
+      "source":"ocid.NIC.93",
+      "target": [
+      ]
+    },
+    {
+      "source":"ocid.NIC.94",
+      "target": [
+      ]
+    },
+    {
+      "source":"ocid.NIC.95",
+      "target": [
+      ]
+    },
+    {
+      "source":"ocid.NIC.96",
+      "target": [
+      ]
+    },
+    {
+      "source":"ocid.NIC.97",
+      "target": [
+      ]
+    }
+  ],
+  "description": "This is mock scenario 4."
 }

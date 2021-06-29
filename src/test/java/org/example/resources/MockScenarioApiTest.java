@@ -66,6 +66,8 @@ public class MockScenarioApiTest {
                     if(check)
                         System.out.println("Following files have data that doesn't match with the REST API:");
                     System.out.println(fileName);
+                    System.out.println("data\n"+data);
+                    System.out.println("response\n"+response);
                     check=false;
                 }
             }

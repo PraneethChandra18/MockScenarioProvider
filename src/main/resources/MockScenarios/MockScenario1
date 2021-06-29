@@ -1,4 +1,5 @@
 {
+  "name": "Hello-world",
   "nodes": [
     {
       "id":"ocid.compartment.0",
@@ -38,5 +39,32 @@
       "children": [
       ]
     }
-  ]
+  ],
+  "edges": [
+    {
+      "source":"ocid.VCN.1",
+      "target": [
+        "ocid.subnet.2"
+      ]
+    },
+    {
+      "source":"ocid.subnet.2",
+      "target": [
+        "ocid.instance.3"
+      ]
+    },
+    {
+      "source":"ocid.instance.3",
+      "target": [
+        "ocid.NIC.4"
+      ]
+    },
+    {
+      "source":"ocid.NIC.4",
+      "target": [
+        "ocid.blockVolume.5"
+      ]
+    }
+  ],
+  "description": "This is mock scenario 1."
 }

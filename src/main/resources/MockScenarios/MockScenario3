@@ -1,4 +1,5 @@
 {
+  "name": "Small-Tenancy",
   "nodes": [
     {
       "id":"ocid.compartment.0",
@@ -111,5 +112,193 @@
         }
       ]
     }
-  ]
+  ],
+  "edges": [
+    {
+      "source":"ocid.VCN.2",
+      "target": [
+        "ocid.subnet.3",
+        "ocid.subnet.4"
+      ]
+    },
+    {
+      "source":"ocid.subnet.3",
+      "target": [
+        "ocid.instance.5",
+        "ocid.instance.6",
+        "ocid.instance.7",
+        "ocid.instance.8",
+        "ocid.instance.9"
+      ]
+    },
+    {
+      "source":"ocid.subnet.4",
+      "target": [
+        "ocid.instance.10",
+        "ocid.instance.11",
+        "ocid.instance.12",
+        "ocid.instance.13",
+        "ocid.instance.14"
+      ]
+    },
+    {
+      "source":"ocid.instance.5",
+      "target": [
+        "ocid.NIC.15"
+      ]
+    },
+    {
+      "source":"ocid.instance.6",
+      "target": [
+        "ocid.NIC.16"
+      ]
+    },
+    {
+      "source":"ocid.instance.7",
+      "target": [
+        "ocid.NIC.17"
+      ]
+    },
+    {
+      "source":"ocid.instance.8",
+      "target": [
+        "ocid.NIC.18"
+      ]
+    },
+    {
+      "source":"ocid.instance.9",
+      "target": [
+        "ocid.NIC.19"
+      ]
+    },
+    {
+      "source":"ocid.instance.10",
+      "target": [
+        "ocid.NIC.20"
+      ]
+    },
+    {
+      "source":"ocid.instance.11",
+      "target": [
+        "ocid.NIC.21"
+      ]
+    },
+    {
+      "source":"ocid.instance.12",
+      "target": [
+        "ocid.NIC.22"
+      ]
+    },
+    {
+      "source":"ocid.instance.13",
+      "target": [
+        "ocid.NIC.23"
+      ]
+    },
+    {
+      "source":"ocid.instance.14",
+      "target": [
+        "ocid.NIC.24"
+      ]
+    },
+    {
+      "source":"ocid.NIC.15",
+      "target": [
+        "ocid.blockVolume.25"
+      ]
+    },
+    {
+      "source":"ocid.NIC.16",
+      "target": [
+        "ocid.blockVolume.26"
+      ]
+    },
+    {
+      "source":"ocid.NIC.17",
+      "target": [
+        "ocid.blockVolume.27"
+      ]
+    },
+    {
+      "source":"ocid.NIC.18",
+      "target": [
+        "ocid.blockVolume.28"
+      ]
+    },
+    {
+      "source":"ocid.NIC.19",
+      "target": [
+        "ocid.blockVolume.29"
+      ]
+    },
+    {
+      "source":"ocid.NIC.20",
+      "target": [
+      ]
+    },
+    {
+      "source":"ocid.NIC.21",
+      "target": [
+      ]
+    },
+    {
+      "source":"ocid.NIC.22",
+      "target": [
+      ]
+    },
+    {
+      "source":"ocid.NIC.23",
+      "target": [
+      ]
+    },
+    {
+      "source":"ocid.NIC.24",
+      "target": [
+      ]
+    },
+    {
+      "source":"ocid.VCN.31",
+      "target": [
+        "ocid.subnet.32",
+        "ocid.subnet.33"
+      ]
+    },
+    {
+      "source":"ocid.subnet.32",
+      "target": [
+        "ocid.instance.34"
+      ]
+    },
+    {
+      "source":"ocid.subnet.33",
+      "target": [
+        "ocid.instance.35"
+      ]
+    },
+    {
+      "source":"ocid.instance.34",
+      "target": [
+        "ocid.NIC.36"
+      ]
+    },
+    {
+      "source":"ocid.instance.35",
+      "target": [
+        "ocid.NIC.37"
+      ]
+    },
+    {
+      "source":"ocid.NIC.36",
+      "target": [
+        "ocid.blockVolume.38"
+      ]
+    },
+    {
+      "source":"ocid.NIC.37",
+      "target": [
+        "ocid.blockVolume.39"
+      ]
+    }
+  ],
+  "description": "This is mock scenario 3."
 }

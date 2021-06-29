@@ -8,14 +8,12 @@ import io.dropwizard.hibernate.UnitOfWork;
 
 import io.swagger.annotations.*;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
 
+import org.example.api.Data;
 import org.example.api.MockScenarioList;
-import org.example.api.Node;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 
 import java.nio.charset.StandardCharsets;
 
@@ -48,33 +46,28 @@ public class MockScenarioResource {
     @GET
     @ApiOperation(value = "Fetch Mock Scenario Data",
             notes = "Returns Mock Scenario Data",
-            response = Node.class)
+            response = Data.class)
     @ApiResponses(value = {@ApiResponse(code = 200, message = "mock data has been successfully fetched"),
                            @ApiResponse(code = 404, message = "Enter valid id")})
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @UnitOfWork
-    public Node fetchData( @ApiParam(value = "ID of required mock scenario", allowableValues = "range[1,6]", required = true) @PathParam("id") String id) throws NotFoundException
+    public Data fetchData( @ApiParam(value = "ID of required mock scenario", allowableValues = "range[1,6]", required = true) @PathParam("id") String id) throws NotFoundException, IOException
     {
 
-        String filename = "MockScenarios/MockScenario" + id;
+        String filename = "./src/main/resources/MockScenarios/MockScenario" + id;
         String data;
-        Node node = null;
-
+        Data node = null;
         try {
-            ClassLoader classLoader = getClass().getClassLoader();
-            InputStream inputStream = classLoader.getResourceAsStream(filename);
-
-            if(inputStream!=null)
-            {
-                data = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
-                node = new ObjectMapper().readValue(data, Node.class);
-            }
+            File file=new File(filename);
+            data = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
+            node = new ObjectMapper().readValue(data, Data.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
-      if(node!=null)
+      if(node!=null){
           return node;
+      }
       else {
           throw new NotFoundException();
       }

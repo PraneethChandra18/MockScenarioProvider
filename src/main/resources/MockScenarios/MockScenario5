@@ -1,225 +1,88 @@
 {
-  "nodes": [
-    {
-      "id":"ocid.compartment.0",
-      "name":"root",
-      "resources": [
-      ],
-      "children": [
+    "name":"",
+    "nodes": [
         {
-          "id":"ocid.compartment.1",
-          "name":"Development",
-          "resources": [
+          "id":"ocid.comp.root",
+          "name":"root",
+          "resources":
+          [
             {
-              "resourceType":"VCN",
-              "items": [
-                "ocid.VCN.2",
-                "ocid.VCN.3"
-              ]
-            },
-            {
-              "resourceType":"subnet",
-              "items": [
-                "ocid.subnet.4",
-                "ocid.subnet.5"
-              ]
-            },
-            {
-              "resourceType":"instance",
-              "items": [
-                "ocid.instance.6",
-                "ocid.instance.7",
-                "ocid.instance.8",
-                "ocid.instance.9",
-                "ocid.instance.10",
-                "ocid.instance.11",
-                "ocid.instance.12",
-                "ocid.instance.13",
-                "ocid.instance.14",
-                "ocid.instance.15"
-              ]
-            },
-            {
-              "resourceType":"NIC",
-              "items": [
-                "ocid.NIC.16",
-                "ocid.NIC.17",
-                "ocid.NIC.18",
-                "ocid.NIC.19",
-                "ocid.NIC.20",
-                "ocid.NIC.21",
-                "ocid.NIC.22",
-                "ocid.NIC.23",
-                "ocid.NIC.24",
-                "ocid.NIC.25"
-              ]
-            },
-            {
-              "resourceType":"blockVolume",
-              "items": [
-                "ocid.blockVolume.26",
-                "ocid.blockVolume.27",
-                "ocid.blockVolume.28",
-                "ocid.blockVolume.29",
-                "ocid.blockVolume.30"
+              "resourceType": "policy",
+              "items":
+              [
+                "ocid.policy.111111...",
+                "ocid.policy.222222..."
               ]
             }
           ],
-          "children": [
-          ]
-        },
-        {
-          "id":"ocid.compartment.31",
-          "name":"Test",
-          "resources": [
+          "children":
+          [
             {
-              "resourceType":"VCN",
-              "items": [
-                "ocid.VCN.32",
-                "ocid.VCN.33",
-                "ocid.VCN.34"
+              "id":"ocid.comp.1111111",
+              "name":"compute",
+              "resources":
+              [
+                {
+                  "resourceType": "instance",
+                  "items":
+                  [
+                    "ocid.instance.1111111",
+                    "ocid.instance.222222",
+                    "ocid.instance.333333"
+                  ]
+                }
+              ],
+              "children":
+              [
+                {
+                  "id":"ocid.comp.3",
+                  "name":"network",
+                  "resources":
+                  [
+                    {
+                      "resourceType": "subnet",
+                      "items":
+                      [
+                        "ocid.subnet.11111"
+                      ]
+                    },
+                    {
+                      "resourceType": "vcn",
+                      "items":
+                      [
+                        "ocid.vcn.11111"
+                      ]
+                    }
+                  ],
+                  "children":[]
+                }
               ]
             },
             {
-              "resourceType":"subnet",
-              "items": [
-                "ocid.subnet.35",
-                "ocid.subnet.36",
-                "ocid.subnet.37"
-              ]
-            },
-            {
-              "resourceType":"instance",
-              "items": [
-                "ocid.instance.38",
-                "ocid.instance.39",
-                "ocid.instance.40",
-                "ocid.instance.41",
-                "ocid.instance.42",
-                "ocid.instance.43",
-                "ocid.instance.44",
-                "ocid.instance.45",
-                "ocid.instance.46",
-                "ocid.instance.47",
-                "ocid.instance.48",
-                "ocid.instance.49",
-                "ocid.instance.50",
-                "ocid.instance.51",
-                "ocid.instance.52",
-                "ocid.instance.53",
-                "ocid.instance.54",
-                "ocid.instance.55",
-                "ocid.instance.56",
-                "ocid.instance.57",
-                "ocid.instance.58",
-                "ocid.instance.59",
-                "ocid.instance.60",
-                "ocid.instance.61",
-                "ocid.instance.62",
-                "ocid.instance.63",
-                "ocid.instance.64",
-                "ocid.instance.65",
-                "ocid.instance.66",
-                "ocid.instance.67"
-              ]
-            },
-            {
-              "resourceType":"NIC",
-              "items": [
-                "ocid.NIC.68",
-                "ocid.NIC.69",
-                "ocid.NIC.70",
-                "ocid.NIC.71",
-                "ocid.NIC.72",
-                "ocid.NIC.73",
-                "ocid.NIC.74",
-                "ocid.NIC.75",
-                "ocid.NIC.76",
-                "ocid.NIC.77",
-                "ocid.NIC.78",
-                "ocid.NIC.79",
-                "ocid.NIC.80",
-                "ocid.NIC.81",
-                "ocid.NIC.82",
-                "ocid.NIC.83",
-                "ocid.NIC.84",
-                "ocid.NIC.85",
-                "ocid.NIC.86",
-                "ocid.NIC.87",
-                "ocid.NIC.88",
-                "ocid.NIC.89",
-                "ocid.NIC.90",
-                "ocid.NIC.91",
-                "ocid.NIC.92",
-                "ocid.NIC.93",
-                "ocid.NIC.94",
-                "ocid.NIC.95",
-                "ocid.NIC.96",
-                "ocid.NIC.97"
-              ]
-            },
-            {
-              "resourceType":"blockVolume",
-              "items": [
-                "ocid.blockVolume.98",
-                "ocid.blockVolume.99",
-                "ocid.blockVolume.100",
-                "ocid.blockVolume.101",
-                "ocid.blockVolume.102",
-                "ocid.blockVolume.103",
-                "ocid.blockVolume.104",
-                "ocid.blockVolume.105",
-                "ocid.blockVolume.106",
-                "ocid.blockVolume.107"
-              ]
+              "id":"ocid.comp.3",
+              "name":"network",
+              "resources":
+              [
+                {
+                  "resourceType": "subnet",
+                  "items":
+                  [
+                    "ocid.subnet.222222"
+                  ]
+                },
+                {
+                  "resourceType": "vcn",
+                  "items":
+                  [
+                    "ocid.vcn.222222"
+                  ]
+                }
+              ],
+              "children":[]
             }
-          ],
-          "children": [
-          ]
-        },
-        {
-          "id":"ocid.compartment.108",
-          "name":"Production",
-          "resources": [
-            {
-              "resourceType":"VCN",
-              "items": [
-                "ocid.VCN.109"
-              ]
-            },
-            {
-              "resourceType":"subnet",
-              "items": [
-                "ocid.subnet.110",
-                "ocid.subnet.111"
-              ]
-            },
-            {
-              "resourceType":"instance",
-              "items": [
-                "ocid.instance.112",
-                "ocid.instance.113"
-              ]
-            },
-            {
-              "resourceType":"NIC",
-              "items": [
-                "ocid.NIC.114",
-                "ocid.NIC.115"
-              ]
-            },
-            {
-              "resourceType":"blockVolume",
-              "items": [
-                "ocid.blockVolume.116",
-                "ocid.blockVolume.117"
-              ]
-            }
-          ],
-          "children": [
           ]
         }
-      ]
-    }
-  ]
+    ],
+    "edges":[],
+    "description":""
 }
