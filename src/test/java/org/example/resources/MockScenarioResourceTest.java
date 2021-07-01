@@ -1,5 +1,6 @@
 package org.example.resources;
 
+import com.codahale.metrics.MetricRegistry;
 import org.apache.commons.io.FileUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,9 +21,10 @@ public class MockScenarioResourceTest {
     private MockScenarioResource resource;
     private File[] files;
     private String filePath;
+
     @Before
     public void setup(){
-        resource=new MockScenarioResource();
+        resource=new MockScenarioResource(new MetricRegistry());
         filePath="./src/main/resources/MockScenarios";
         File folder=new File(filePath);
         files=folder.listFiles();

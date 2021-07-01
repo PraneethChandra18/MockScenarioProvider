@@ -2,6 +2,9 @@ package org.example.resources;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+
+import com.codahale.metrics.MetricRegistry;
+import com.codahale.metrics.Timer;
 import io.dropwizard.hibernate.UnitOfWork;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -13,8 +16,11 @@ import io.swagger.annotations.ApiResponses;
 @Produces(MediaType.TEXT_PLAIN)
 public class HelloWorldResource {
 
+    private MetricRegistry service;
 
-    public HelloWorldResource() { }
+    public HelloWorldResource(MetricRegistry service) {
+        this.service=service;
+    }
 
     @GET
     @UnitOfWork
@@ -23,6 +29,9 @@ public class HelloWorldResource {
             notes = "Returns Hello World")
     @ApiResponses(value = { @ApiResponse(code = 200, message = "Server is working fine")})
     public String helloWorld() {
-        return "Hello World";
+        Timer timer=service.timer("hello-world");
+        try(Timer.Context t=timer.time()) {
+            return "Hello World";
+        }
     }
 }

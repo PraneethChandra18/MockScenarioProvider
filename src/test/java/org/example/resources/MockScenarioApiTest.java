@@ -1,5 +1,6 @@
 package org.example.resources;
 
+import com.codahale.metrics.MetricRegistry;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.dropwizard.testing.junit.ResourceTestRule;
@@ -29,13 +30,13 @@ public class MockScenarioApiTest {
 
     @Rule
     public final ResourceTestRule resources= ResourceTestRule.builder()
-            .addResource(new MockScenarioResource())
+            .addResource(new MockScenarioResource(new MetricRegistry()))
             .build();
 
     @Test
     public void ApiHasNoId() throws IOException{
         String apiPath="/MockScenario";
-        String response=response=resources.client().target(apiPath)
+        String response=resources.client().target(apiPath)
                     .request().get(String.class);
         File file=new File("./src/main/resources/MockScenarioList");
         String data = FileUtils.readFileToString(file, StandardCharsets.UTF_8);

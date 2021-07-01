@@ -1,9 +1,13 @@
 package org.example;
 
+import com.codahale.metrics.ConsoleReporter;
+import com.codahale.metrics.MetricRegistry;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 
+import org.example.api.Data;
+import org.example.metrics.healthchecks.DataHealthCheck;
 import org.example.resources.HelloWorldResource;
 
 import org.eclipse.jetty.servlets.CrossOriginFilter;
@@ -11,6 +15,7 @@ import org.example.resources.MockScenarioResource;
 
 import javax.servlet.*;
 import java.util.EnumSet;
+import java.util.concurrent.TimeUnit;
 
 import io.federecio.dropwizard.swagger.SwaggerBundle;
 import io.federecio.dropwizard.swagger.SwaggerBundleConfiguration;
@@ -56,8 +61,19 @@ public class MockScenerioSupplierApplication extends Application<MockScenerioSup
         // Add URL mapping
         cors.addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), true, "/*");
 
-        environment.jersey().register(new HelloWorldResource());
-        environment.jersey().register(new MockScenarioResource());
+        Data data=new Data();
+        data.name="";
+        data.description="";
+
+        final DataHealthCheck dataHealthCheck=new DataHealthCheck(data);
+        environment.healthChecks().register("data",dataHealthCheck);
+
+        MetricRegistry metrics=environment.metrics();
+
+        environment.jersey().register(new HelloWorldResource(metrics));
+        environment.jersey().register(new MockScenarioResource(metrics));
+
+        //ConsoleReporter.forRegistry(metrics).build().start(1, TimeUnit.SECONDS);
     }
 
 }

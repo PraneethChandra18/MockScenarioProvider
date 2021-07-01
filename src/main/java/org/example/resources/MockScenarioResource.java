@@ -3,6 +3,8 @@ package org.example.resources;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
+import com.codahale.metrics.MetricRegistry;
+import com.codahale.metrics.Timer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.dropwizard.hibernate.UnitOfWork;
 
@@ -22,6 +24,12 @@ import java.nio.charset.StandardCharsets;
 @Path("/MockScenario")
 public class MockScenarioResource {
 
+    private MetricRegistry service;
+
+    public MockScenarioResource(MetricRegistry service){
+        this.service=service;
+    }
+
     @GET
     @ApiOperation(value = "Fetch Description of Each Mock Scenario",
             notes = "Returns JSON object having description of each Mock Scenario",
@@ -32,12 +40,14 @@ public class MockScenarioResource {
     @Produces(MediaType.APPLICATION_JSON)
     @UnitOfWork
     public MockScenarioList fetchDescription() throws IOException{
+        Timer timer=service.timer("MockScenarioList");
+        Timer.Context time=timer.time();
         String fileName = "./src/main/resources/MockScenarioList";
         MockScenarioList mockScenarioList=null;
-
         File file=new File(fileName);
         String data= FileUtils.readFileToString(file,StandardCharsets.UTF_8);
         mockScenarioList = new ObjectMapper().readValue(data, MockScenarioList.class);
+        time.stop();
         return mockScenarioList;
     }
 
@@ -54,7 +64,8 @@ public class MockScenarioResource {
     @UnitOfWork
     public Data fetchData( @ApiParam(value = "ID of required mock scenario", allowableValues = "range[1,6]", required = true) @PathParam("id") String id) throws NotFoundException, IOException
     {
-
+        Timer timer=service.timer("Mock Scenario "+id+" API");
+        Timer.Context time=timer.time();
         String filename = "./src/main/resources/MockScenarios/MockScenario" + id;
         String data;
         Data node = null;
@@ -66,6 +77,7 @@ public class MockScenarioResource {
             e.printStackTrace();
         }
       if(node!=null){
+          time.stop();
           return node;
       }
       else {
@@ -80,6 +92,8 @@ public class MockScenarioResource {
     @UnitOfWork
     @Produces(MediaType.TEXT_PLAIN)
     public long countFiles() {
+        Timer timer=service.timer("Count Files API");
+        Timer.Context time=timer.time();
         long count = 0;
 
         File folder = new File("./src/main/resources/MockScenarios");
@@ -94,7 +108,7 @@ public class MockScenarioResource {
                 }
             }
         }
-
+        time.stop();
         return count;
     }
 }
