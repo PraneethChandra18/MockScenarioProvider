@@ -20,6 +20,10 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
 
+/*
+This class is for making the apis for fetching the data from the mock scenarios
+ */
+
 @Api("/MockScenario")
 @Path("/MockScenario")
 public class MockScenarioResource {
@@ -37,9 +41,12 @@ public class MockScenarioResource {
     @ApiResponses(value = {@ApiResponse(code = 200, message = "description of all mock data has been successfully fetched"),
             @ApiResponse(code = 404, message = "Enter valid url")})
     @Path("")
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)   //returns json object
     @UnitOfWork
+
+    //api for fetching the list and descriptions of each of the mock scenarios
     public MockScenarioList fetchDescription() throws IOException{
+        //timer starts
         Timer timer=service.timer("MockScenarioList");
         Timer.Context time=timer.time();
         String fileName = "./src/main/resources/MockScenarioList";
@@ -47,6 +54,7 @@ public class MockScenarioResource {
         File file=new File(fileName);
         String data= FileUtils.readFileToString(file,StandardCharsets.UTF_8);
         mockScenarioList = new ObjectMapper().readValue(data, MockScenarioList.class);
+        //timer ends
         time.stop();
         return mockScenarioList;
     }
@@ -60,8 +68,9 @@ public class MockScenarioResource {
     @ApiResponses(value = {@ApiResponse(code = 200, message = "mock data has been successfully fetched"),
                            @ApiResponse(code = 404, message = "Enter valid id")})
     @Path("/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON) //returns json object
     @UnitOfWork
+    //api for fetching the data within each of the mock scenario files in the backend
     public Data fetchData( @ApiParam(value = "ID of required mock scenario", allowableValues = "range[1,6]", required = true) @PathParam("id") String id) throws NotFoundException, IOException
     {
         Timer timer=service.timer("Mock Scenario "+id+" API");
@@ -90,7 +99,9 @@ public class MockScenarioResource {
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Count for available mocked scenarios successfully fetched")})
     @Path("/countFiles")
     @UnitOfWork
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.TEXT_PLAIN)  //return string (text)
+
+    //api for returning the count of the files present in the backend
     public long countFiles() {
         Timer timer=service.timer("Count Files API");
         Timer.Context time=timer.time();
@@ -103,7 +114,6 @@ public class MockScenarioResource {
         {
             for (File file: files) {
                 if (file.isFile() && file.getName().contains("MockScenario")) {
-//                    System.out.println(file.getAbsolutePath());
                     count++;
                 }
             }

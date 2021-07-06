@@ -61,18 +61,24 @@ public class MockScenerioSupplierApplication extends Application<MockScenerioSup
         // Add URL mapping
         cors.addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), true, "/*");
 
+        // An Object of Data Class for Health Checks
         Data data=new Data();
         data.name="";
         data.description="";
 
+
+        // Registering the Health Checks
         final DataHealthCheck dataHealthCheck=new DataHealthCheck(data);
         environment.healthChecks().register("data",dataHealthCheck);
 
+        //Registering the metrics
         MetricRegistry metrics=environment.metrics();
 
+        //Registering the Resource Classes
         environment.jersey().register(new HelloWorldResource(metrics));
         environment.jersey().register(new MockScenarioResource(metrics));
 
+        //For reporting the logs on the console every t seconds (creates a problem while testing)
         //ConsoleReporter.forRegistry(metrics).build().start(1, TimeUnit.SECONDS);
     }
 

@@ -4,6 +4,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
+/*
+Generating the data model as required
+ */
+
 public class Data {
     public String name;
     public List<Compartment> nodes;

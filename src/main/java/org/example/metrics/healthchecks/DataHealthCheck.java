@@ -3,6 +3,10 @@ package org.example.metrics.healthchecks;
 import com.codahale.metrics.health.HealthCheck;
 import org.example.api.Data;
 
+/*
+Implementing simple data health check which checks the data as produced
+when running the application file(server file) is as expected or not
+ */
 
 public class DataHealthCheck extends HealthCheck {
 
@@ -12,7 +16,7 @@ public class DataHealthCheck extends HealthCheck {
     }
 
     @Override
-    protected Result check() throws Exception{
+    protected Result check(){
         final Data data=new Data();
         data.name="";
         data.description="";
