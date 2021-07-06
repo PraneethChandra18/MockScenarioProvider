@@ -1,4 +1,6 @@
- {"mockScenarioList" :
+{
+    "count" : 5,
+    "mockScenarioList" :
    [
      {
        "name" : "Mock Scenario 0 - Trial Scenario",

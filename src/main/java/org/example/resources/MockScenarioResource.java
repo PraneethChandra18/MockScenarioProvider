@@ -12,6 +12,7 @@ import io.swagger.annotations.*;
 import org.apache.commons.io.FileUtils;
 
 import org.example.api.Data;
+import org.example.api.Detail;
 import org.example.api.MockScenarioList;
 
 import java.io.File;
@@ -120,5 +121,43 @@ public class MockScenarioResource {
         }
         time.stop();
         return count;
+    }
+
+    @POST
+    @Path("/saveData")
+    @UnitOfWork
+    @Consumes(MediaType.TEXT_PLAIN)
+    public void saveData(String data) {
+
+        try {
+            Data node = new ObjectMapper().readValue(data, Data.class);
+
+            if(node != null) {
+                MockScenarioList mockScenarioList = fetchDescription();
+                if(mockScenarioList != null) {
+                    mockScenarioList.count = mockScenarioList.count + 1;
+
+                    Detail detail = new Detail();
+                    detail.name = node.name;
+                    detail.description = node.description;
+                    detail.id = String.valueOf(mockScenarioList.count);
+
+                    mockScenarioList.mockScenarioList.add(detail);
+
+                    String fileName = "./src/main/resources/MockScenarios/MockScenario" + mockScenarioList.count;
+
+                    File file = new File(fileName);
+                    FileUtils.touch(file);
+                    FileUtils.writeStringToFile(file, data, StandardCharsets.UTF_8);
+
+                    File file2 = new File("./src/main/resources/MockScenarioList");
+                    String text = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(mockScenarioList);
+                    FileUtils.writeStringToFile(file2, text, StandardCharsets.UTF_8);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }
