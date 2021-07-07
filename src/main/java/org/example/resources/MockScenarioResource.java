@@ -19,6 +19,7 @@ import java.io.File;
 import java.io.IOException;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 
 
 /*
@@ -128,6 +129,8 @@ public class MockScenarioResource {
     @UnitOfWork
     @Consumes(MediaType.TEXT_PLAIN)
     public void saveData(String data) {
+        Timer timer=service.timer("saveData");
+        Timer.Context time=timer.time();
 
         try {
             Data node = new ObjectMapper().readValue(data, Data.class);
@@ -155,6 +158,35 @@ public class MockScenarioResource {
                     FileUtils.writeStringToFile(file2, text, StandardCharsets.UTF_8);
                 }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        time.stop();
+    }
+
+    @DELETE
+    @Path("/delete/{id}")
+    @UnitOfWork
+    public void deleteData(@PathParam("id") String id) {
+
+        String fileName = "./src/main/resources/MockScenarios/MockScenario" + id;
+        File file = new File(fileName);
+
+        try {
+            MockScenarioList mockScenarioList = fetchDescription();
+            if(mockScenarioList != null) {
+                mockScenarioList.mockScenarioList.removeIf(x -> Objects.equals(x.id, id));
+
+                File file2 = new File("./src/main/resources/MockScenarioList");
+                String text = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(mockScenarioList);
+                FileUtils.writeStringToFile(file2, text, StandardCharsets.UTF_8);
+            }
+
+            if(file.exists()) {
+                FileUtils.deleteQuietly(file);
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
