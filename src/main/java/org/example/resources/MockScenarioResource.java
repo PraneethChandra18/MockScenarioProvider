@@ -19,6 +19,8 @@ import java.io.File;
 import java.io.IOException;
 
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -169,7 +171,8 @@ public class MockScenarioResource {
     @Path("/delete/{id}")
     @UnitOfWork
     public void deleteData(@PathParam("id") String id) {
-
+        Timer timer=service.timer("Delete Mock Scenario "+id);
+        Timer.Context time=timer.time();
         String fileName = "./src/main/resources/MockScenarios/MockScenario" + id;
         File file = new File(fileName);
 
@@ -190,6 +193,45 @@ public class MockScenarioResource {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        time.stop();
     }
+
+    @PUT
+    @Path("/editData/{id}")
+    @UnitOfWork
+    @Consumes(MediaType.TEXT_PLAIN)
+    public void editData(@PathParam("id") String id, String data){
+        Timer timer=service.timer("Edit Mock Scenario "+id);
+        Timer.Context time=timer.time();
+        try{
+            Data newData = new ObjectMapper().readValue(data, Data.class);
+            MockScenarioList mockScenarioList= fetchDescription();
+            if(mockScenarioList != null) {
+
+                Detail detail = new Detail();
+                detail.name = newData.name;
+                detail.description = newData.description;
+                detail.id=id;
+                for (int i = 0; i < mockScenarioList.mockScenarioList.size(); i++) {
+                    if(mockScenarioList.mockScenarioList.get(i).id.equals(id)){
+                        mockScenarioList.mockScenarioList.get(i).name=newData.name;
+                        mockScenarioList.mockScenarioList.get(i).name = newData.name;
+                        mockScenarioList.mockScenarioList.get(i).description = newData.description;
+                    }
+                }
+                String fileName = "./src/main/resources/MockScenarios/MockScenario" + id;
+                File file = new File(fileName);
+                FileUtils.touch(file);
+                FileUtils.writeStringToFile(file, data, StandardCharsets.UTF_8);
+
+                File file2 = new File("./src/main/resources/MockScenarioList");
+                String text = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(mockScenarioList);
+                FileUtils.writeStringToFile(file2, text, StandardCharsets.UTF_8);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        time.stop();
+    }
+
 }
