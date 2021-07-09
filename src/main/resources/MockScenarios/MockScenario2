@@ -14,7 +14,8 @@
             {
               "resourceType":"VCN",
               "items": [
-                "ocid.VCN.2"
+                "ocid.VCN.2",
+                "ocid.VCN.3"
               ]
             },
             {
@@ -38,7 +39,8 @@
             {
               "resourceType":"blockVolume",
               "items": [
-                "ocid.blockVolume.6"
+                "ocid.blockVolume.6",
+                "ocid.blockVolume.7"
               ]
             }
           ],
@@ -59,7 +61,8 @@
               "resourceType":"subnet",
               "items": [
                 "ocid.subnet.9",
-                "ocid.subnet.10"
+                "ocid.subnet.10",
+                "ocid.subnet.11"
               ]
             },
             {
@@ -112,7 +115,8 @@
     {
       "source":"ocid.NIC.5",
       "target": [
-        "ocid.blockVolume.6"
+        "ocid.blockVolume.6",
+        "ocid.blockVolume.16"
       ]
     },
     {
@@ -149,13 +153,15 @@
     {
       "source":"ocid.NIC.13",
       "target": [
+        "ocid.blockVolume.6",
         "ocid.blockVolume.15"
       ]
     },
     {
       "source":"ocid.NIC.14",
       "target": [
-        "ocid.blockVolume.16"
+        "ocid.blockVolume.16",
+        "ocid.blockVolume.17"
       ]
     }
   ],
