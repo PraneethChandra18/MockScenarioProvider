@@ -2,65 +2,64 @@
   "name": "Hello-world",
   "nodes": [
     {
-      "id":"ocid.compartment.0",
-      "name":"root",
+      "id": "ocid.compartment.0",
+      "name": "root",
       "resources": [
         {
-          "resourceType":"VCN",
+          "resourceType": "VCN",
           "items": [
             "ocid.VCN.1"
           ]
         },
         {
-          "resourceType":"subnet",
+          "resourceType": "subnet",
           "items": [
             "ocid.subnet.2"
           ]
         },
         {
-          "resourceType":"instance",
+          "resourceType": "instance",
           "items": [
             "ocid.instance.3"
           ]
         },
         {
-          "resourceType":"NIC",
+          "resourceType": "NIC",
           "items": [
             "ocid.NIC.4"
           ]
         },
         {
-          "resourceType":"blockVolume",
+          "resourceType": "blockVolume",
           "items": [
             "ocid.blockVolume.5"
           ]
         }
       ],
-      "children": [
-      ]
+      "children": []
     }
   ],
   "edges": [
     {
-      "source":"ocid.VCN.1",
+      "source": "ocid.VCN.1",
       "target": [
         "ocid.subnet.2"
       ]
     },
     {
-      "source":"ocid.subnet.2",
+      "source": "ocid.subnet.2",
       "target": [
         "ocid.instance.3"
       ]
     },
     {
-      "source":"ocid.instance.3",
+      "source": "ocid.instance.3",
       "target": [
         "ocid.NIC.4"
       ]
     },
     {
-      "source":"ocid.NIC.4",
+      "source": "ocid.NIC.4",
       "target": [
         "ocid.blockVolume.5"
       ]

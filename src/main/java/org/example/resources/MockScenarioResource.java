@@ -19,6 +19,8 @@ import java.io.File;
 import java.io.IOException;
 
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -73,7 +75,7 @@ public class MockScenarioResource {
     @Produces(MediaType.APPLICATION_JSON) //returns json object
     @UnitOfWork
     //api for fetching the data within each of the mock scenario files in the backend
-    public Data fetchData( @ApiParam(value = "ID of required mock scenario", allowableValues = "range[1,6]", required = true) @PathParam("id") String id) throws NotFoundException, IOException
+    public Data fetchData( @ApiParam(value = "ID of required mock scenario", allowableValues = "range[0,1000000000]", required = true) @PathParam("id") String id) throws NotFoundException, IOException
     {
         Timer timer=service.timer("Mock Scenario "+id+" API");
         Timer.Context time=timer.time();
@@ -125,6 +127,10 @@ public class MockScenarioResource {
     }
 
     @POST
+    @ApiOperation(value = "Add a new Mock Scenario",
+            notes = "Adds a new Mock Scenario File to the end of the current list of Mock Scenarios")
+    @ApiResponses(value = {@ApiResponse(code = 204, message = "Mock Data has been Added Successfully | No Content"),
+                           @ApiResponse(code = 415, message = "Unsupported Media Type")})	
     @Path("/saveData")
     @UnitOfWork
     @Consumes(MediaType.TEXT_PLAIN)
@@ -166,10 +172,14 @@ public class MockScenarioResource {
     }
 
     @DELETE
+    @ApiOperation(value = "Removes a Mock Scenario from the backend",
+            notes = "Removes a particular Mock Scenario File which has the given id parameter")
+    @ApiResponses(value = {@ApiResponse(code = 204, message = "Mock Data has been removed successfully | No Content")})
     @Path("/delete/{id}")
     @UnitOfWork
-    public void deleteData(@PathParam("id") String id) {
-
+    public void deleteData(@ApiParam(value = "ID of the mock scenario which you want to delete", allowableValues = "range[0,1000000000]", required = true) @PathParam("id") String id) {
+        Timer timer=service.timer("Delete Mock Scenario "+id);
+        Timer.Context time=timer.time();
         String fileName = "./src/main/resources/MockScenarios/MockScenario" + id;
         File file = new File(fileName);
 
@@ -190,6 +200,67 @@ public class MockScenarioResource {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        time.stop();
     }
+
+    @PUT
+    @ApiOperation(value = "Edits a Mock Scenario present in the backend",
+            notes = "Edits a particular Mock Scenario File which has the given id parameter")
+    @ApiResponses(value = {@ApiResponse(code = 204, message = "Mock Data has been edited successfully | No Content"),
+			   @ApiResponse(code = 415, message = "Unsupported Media Type")})
+    @Path("/editData/{id}")
+    @UnitOfWork
+    @Consumes(MediaType.TEXT_PLAIN)
+    public void editData(@PathParam("id") String id, String data){
+        Timer timer=service.timer("Edit Mock Scenario "+id);
+        Timer.Context time=timer.time();
+        File folder = new File("./src/main/resources/MockScenarios");
+        File[] files = folder.listFiles();
+	boolean g=true;
+        if(files!=null)
+        {
+            for (File file: files) {
+		String fileName=file.getName();
+		fileName=fileName.replace("MockScenario","");
+                if(fileName.equals(id)){
+		g=true;
+		break;
+		}
+		else
+		g=false;
+            }
+        }
+	if(g==false)
+	return;
+        try{
+            Data newData = new ObjectMapper().readValue(data, Data.class);
+            MockScenarioList mockScenarioList= fetchDescription();
+            if(mockScenarioList != null) {
+
+                Detail detail = new Detail();
+                detail.name = newData.name;
+                detail.description = newData.description;
+                detail.id=id;
+                for (int i = 0; i < mockScenarioList.mockScenarioList.size(); i++) {
+                    if(mockScenarioList.mockScenarioList.get(i).id.equals(id)){
+                        mockScenarioList.mockScenarioList.get(i).name=newData.name;
+                        mockScenarioList.mockScenarioList.get(i).name = newData.name;
+                        mockScenarioList.mockScenarioList.get(i).description = newData.description;
+                    }
+                }
+                String fileName = "./src/main/resources/MockScenarios/MockScenario" + id;
+                File file = new File(fileName);
+                FileUtils.touch(file);
+                FileUtils.writeStringToFile(file, data, StandardCharsets.UTF_8);
+
+                File file2 = new File("./src/main/resources/MockScenarioList");
+                String text = new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(mockScenarioList);
+                FileUtils.writeStringToFile(file2, text, StandardCharsets.UTF_8);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        time.stop();
+    }
+
 }
