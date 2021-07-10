@@ -5,10 +5,15 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.dropwizard.testing.junit.ResourceTestRule;
 import org.apache.commons.io.FileUtils;
+import org.example.api.MockScenarioList;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
+
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -19,10 +24,13 @@ import java.nio.charset.StandardCharsets;
 public class MockScenarioApiTest {
 
     private File[] files;
+    private MockScenarioResource resource;
+    private String filePath;
 
     @Before
     public void setup(){
-        String filePath = "./src/main/resources/MockScenarios";
+        resource=new MockScenarioResource(new MetricRegistry());
+        filePath = "./src/main/resources/MockScenarios";
         File folder=new File(filePath);
         files=folder.listFiles();
     }
@@ -88,4 +96,30 @@ public class MockScenarioApiTest {
         }
         assertThat(countExpected).isEqualTo(countActual);
     }
+
+    @Test
+    public void SaveEditDelteTest() throws IOException {
+        String apiPath="/MockScenario/saveData";
+        String data="{\"name\":\"\",\"nodes\":[],\"edges\":[],\"description\":\"\"}";
+        Response res=resources.client().target(apiPath).request().post(Entity.entity(data, MediaType.TEXT_PLAIN));
+        MockScenarioList mockScenarioList=resource.fetchDescription();
+        File file=new File(filePath+"/MockScenario"+mockScenarioList.count);
+        String fileData = FileUtils.readFileToString(file,StandardCharsets.UTF_8);
+        assertThat(data).isEqualTo(fileData);
+        apiPath="/MockScenario/editData/"+mockScenarioList.count;
+        data="{\"name\":\"Hello World\",\"nodes\":[],\"edges\":[],\"description\":\"\"}";
+        res=resources.client().target(apiPath).request().put(Entity.entity(data, MediaType.TEXT_PLAIN));
+        fileData = FileUtils.readFileToString(file,StandardCharsets.UTF_8);
+        assertThat(data).isEqualTo(fileData);
+        apiPath="/MockScenario/delete/"+mockScenarioList.count;
+        res=resources.client().target(apiPath).request().delete();
+        File newFile=new File(filePath+"/MockScenario"+mockScenarioList.count);
+        boolean g=true;
+        if(newFile.exists())
+            g=false;
+        else
+            mockScenarioList.count=mockScenarioList.count-1;
+        assertThat(g).isEqualTo(true);
+    }
+
 }

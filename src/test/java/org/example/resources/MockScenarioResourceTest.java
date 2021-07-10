@@ -2,6 +2,7 @@ package org.example.resources;
 
 import com.codahale.metrics.MetricRegistry;
 import org.apache.commons.io.FileUtils;
+import org.example.api.MockScenarioList;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -133,6 +134,28 @@ public class MockScenarioResourceTest {
         File file=new File("./src/main/resources/MockScenarioList");
         String data = FileUtils.readFileToString(file,StandardCharsets.UTF_8);
         assertThat(isJSONValid(data)).isEqualTo(true);
+    }
+
+    @Test
+    public void updateEditDeleteTest() throws IOException {
+        String data="{\"name\":\"\",\"nodes\":[],\"edges\":[],\"description\":\"\"}";
+        resource.saveData(data);
+        MockScenarioList mockScenarioList=resource.fetchDescription();
+        File file=new File(filePath+"/MockScenario"+mockScenarioList.count);
+        String fileData = FileUtils.readFileToString(file,StandardCharsets.UTF_8);
+        assertThat(data).isEqualTo(fileData);
+        data="{\"name\":\"Hello World\",\"nodes\":[],\"edges\":[],\"description\":\"\"}";
+        resource.editData(""+mockScenarioList.count,data);
+        fileData = FileUtils.readFileToString(file,StandardCharsets.UTF_8);
+        assertThat(data).isEqualTo(fileData);
+        resource.deleteData(""+mockScenarioList.count);
+        File newFile=new File(filePath+"/MockScenario"+mockScenarioList.count);
+        boolean g=true;
+        if(newFile.exists())
+            g=false;
+        else
+            mockScenarioList.count=mockScenarioList.count-1;
+        assertThat(g).isEqualTo(true);
     }
 
 }

@@ -211,27 +211,27 @@ public class MockScenarioResource {
     @Path("/editData/{id}")
     @UnitOfWork
     @Consumes(MediaType.TEXT_PLAIN)
-    public void editData(@PathParam("id") String id, String data){
+    public void editData(@ApiParam(value = "ID of the mock scenario which you want to edit", allowableValues = "range[0,1000000000]", required = true) @PathParam("id") String id, String data){
         Timer timer=service.timer("Edit Mock Scenario "+id);
         Timer.Context time=timer.time();
         File folder = new File("./src/main/resources/MockScenarios");
         File[] files = folder.listFiles();
-	boolean g=true;
+	    boolean g=true;
         if(files!=null)
         {
             for (File file: files) {
-		String fileName=file.getName();
-		fileName=fileName.replace("MockScenario","");
+		        String fileName=file.getName();
+		        fileName=fileName.replace("MockScenario","");
                 if(fileName.equals(id)){
-		g=true;
-		break;
-		}
-		else
-		g=false;
+		            g=true;
+		            break;
+		        }
+		        else
+		        g=false;
             }
         }
-	if(g==false)
-	return;
+	    if(g==false)
+	    return;
         try{
             Data newData = new ObjectMapper().readValue(data, Data.class);
             MockScenarioList mockScenarioList= fetchDescription();
