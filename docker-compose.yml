@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  app:
+    build:
+      context: .
+    volumes:
+      - .:/backend
+    ports:
+      - 8080:8080
+      - 8081:8081
+    image: app:dropwizard-backend
+    container_name: backend_container
+    command: java -jar target/MockScenerioSupplier-1.0-SNAPSHOT.jar server config.yml
+
