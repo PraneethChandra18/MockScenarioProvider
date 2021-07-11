@@ -1,10 +1,6 @@
 {
-  "count" : 16,
+  "count" : 4,
   "mockScenarioList" : [ {
-    "name" : "Mock Scenario 0 - Trial Scenario",
-    "id" : "0",
-    "description" : " The data here is just for trial."
-  }, {
     "name" : "Hello-world",
     "id" : "1",
     "description" : "This is mock scenario 1."
@@ -20,9 +16,5 @@
     "name" : "Mock Scenario 4 -  Medium-Tenancy",
     "id" : "4",
     "description" : " Empty Root Compartment, Development compartment containing 2 VCNs, 2 Subnets, 10 Compute Instance, 10 Network NICs & Attachements and 5 Block Volumes., Test compartment containing 3 VCNs, 3 Subnets, 30 Compute Instance, 30 Network NICs & Attachements, 10 Block Volumes for 20 instances with remainder sharing the 5 volumes from Development compartment., Production compartment containing 1 VCN, 2 Subnet, 2 Compute Instance, 2 Network NIC & Attachement and 2 Block Volumes."
-  }, {
-    "name" : "Mock Scenario 5 - Trial Scenario",
-    "id" : "5",
-    "description" : " The data here is just for trial."
   } ]
 }

@@ -1,5 +1,5 @@
 {
-  "name": "Small-Tenancy",
+  "name": "Mock Scenario 3 - Small-Tenancy",
   "nodes": [
     {
       "id":"ocid.compartment.0",
@@ -300,5 +300,5 @@
       ]
     }
   ],
-  "description": "This is mock scenario 3."
+  "description": "This scenario comprises of :- Empty Root Compartment ,Development compartment containing 1 VCN, 2 Subnets, 10 Compute Instance, 10 Network NICs & Attachements and 5 Block Volumes., Production compartment containing 1 VCN, 2 Subnets, 2 Compute Instances, 2 Network NICs & Attachements and 2 Block Volumes."
 }
